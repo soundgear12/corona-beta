@@ -1,4 +1,6 @@
 const express = require('express')
+//cors allows other ports to make requests
+const cors = require('cors')
 const mysql = require('mysql')
 
 const app = express()
@@ -12,7 +14,9 @@ const db = mysql.createConnection({
     database: 'coronavirus'
 })
 
-app.get('/getallCorona', (req, res) => {
+app.use(cors())
+
+app.get('/getallCovid', (req, res) => {
     const query = "SELECT * FROM COVID"
     db.query(query, (err, rows) => {
         if (err) throw err;
