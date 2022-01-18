@@ -13,7 +13,7 @@ const Table = ({ data }) => {
 
     return (
         <ReactTable
-            className="-striped -highlight"
+            className="-striped -highlight covid-table"
             data={data}
             columns={columns}
             defaultPageSize={100}

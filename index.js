@@ -19,14 +19,9 @@ const covidArray = covidRows.data.map(row => {
     const { Region, date, Deaths, Recoveries, Active, DeathRateCases } = row
 
     const datearray = date.split("/");
+    
     const newdate =  datearray[2] + '-' + datearray[0] + '-' + datearray[1];
     console.log(newdate);
-    
-    /* function convert(date) {
-        var datearray = date.split("/");
-        var newdate =  datearray[2] + '/' + datearray[1] + '/' + datearray[0];
-        return newdate
-    } */
 
     return { Region, newdate, Deaths, Recoveries, Active, DeathRateCases }
 })

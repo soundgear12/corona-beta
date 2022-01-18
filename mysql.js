@@ -24,6 +24,8 @@ db.connect(err => {
     + "(region, date, deaths, recoveries, active, death_rate_cases)"
     executeQuery(query, "Covid table loaded!")
     
+    //run mysql query to reformat date
+
     db.end(err => {
         if (err) throw err;
         console.log("All done! Closing the database connection!")

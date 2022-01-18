@@ -16,6 +16,14 @@ const db = mysql.createConnection({
 
 app.use(cors())
 
+/* app.get('/getallCovid', (req, res) => {
+    const query = "SELECT * FROM COVID"
+    db.query(query, (err, rows) => {
+        if (err) throw err;
+        res.send(rows)
+    })
+}) */
+
 app.get('/getallCovid', (req, res) => {
     const query = "SELECT * FROM COVID"
     db.query(query, (err, rows) => {
@@ -23,5 +31,4 @@ app.get('/getallCovid', (req, res) => {
         res.send(rows)
     })
 })
-
 app.listen(port, () => console.log(`REST API listening on port ${port}`))
