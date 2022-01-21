@@ -1,10 +1,11 @@
 import React from "react";
 import ReactTable from 'react-table-6';
+import LoadingBar from "../loader/Loadingbar";
 import 'react-table-6/react-table.css';
 
 const Table = ({ data }) => {
     if (!data || !data[0]) {
-        return null
+        return <LoadingBar />
     }
     
     const columns = Object.keys(data[0]).map(key => {
@@ -21,4 +22,4 @@ const Table = ({ data }) => {
     )
 }
 
-export default Table;
+export default Table
