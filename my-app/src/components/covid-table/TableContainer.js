@@ -2,19 +2,27 @@ import React, { Component } from "react";
 import Table from "./Table.js"
 import ResetButton from "./ResetButton.js";
 import KH from "../../res/gifs/KH.gif"
+import CovidStore from "../../stores/CovidStore.js";
+import Actions from "../../actions"
 
 // could use nation flags instead of GIFs
 export default class TableContainer extends Component {
     state = {
-        data: []
+        covids: []
     }
 
     componentDidMount() {
-        fetch('http://localhost:4000/getAllCovid')
-            .then(res => res.json())
-            .then((json => {
-                this.setState({ data: json })
-            }))
+        CovidStore.listen(this.onChange)
+        Actions.getCovids("")
+    }
+
+    componentWillUnmount() {
+        CovidStore.unlisten(this.onChange)
+    }
+
+    onChange = store => {
+        const { covids } = store
+        this.setState({ covids })
     }
 
     render() {
@@ -31,7 +39,7 @@ export default class TableContainer extends Component {
                     <img src={KH} alt="kingdom-hearts" />
                 </div>
 
-                <Table data={this.state.data} />    
+                <Table data={this.state.covids} />    
             </div>
 
             
