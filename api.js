@@ -32,4 +32,6 @@ app.get('/getallCovid', (req, res) => {
     })
 })
 
+
+
 app.listen(port, () => console.log(`REST API listening on port ${port}`))

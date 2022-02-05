@@ -26,6 +26,16 @@ db.connect(err => {
     
     //run mysql query to reformat date
 
+    query = "DROP TABLE IF EXISTS DAILY_COVID"
+    executeQuery(query, "Daily Covid table dropped!")
+
+    query = "CREATE TABLE DAILY_COVID (UID INT PRIMARY KEY, City VARCHAR(255), Province_State VARCHAR(255), Cases INT)"
+    executeQuery(query, "Daily Covid table created!")
+
+    query = "LOAD DATA LOCAL INFILE 'csv/covidConfirmedTable.csv' INTO TABLE DAILY_COVID FIELDS TERMINATED BY ',' IGNORE 1 LINES"
+    + "(uid, city, province_state, cases)"
+    executeQuery(query, "Daily Covid table loaded!")
+
     db.end(err => {
         if (err) throw err;
         console.log("All done! Closing the database connection!")
