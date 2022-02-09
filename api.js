@@ -32,6 +32,22 @@ app.get('/getallCovid', (req, res) => {
     })
 })
 
+app.get('/deleteCovid/:id', (req, res) => {
+    const query = `DELETE FROM Covid WHERE row_id = ${req.params.id}`
+    db.query(query, (err, rows) => {
+        if (err) throw err;
+        res.send(rows)
+    })
+})
+
+//Daily Covid
+app.get('/getallDailyCovid', (req, res) => {
+    const query = "SELECT * FROM DAILY_COVID"
+    db.query(query, (err, rows) => {
+        if (err) throw err;
+        res.send(rows)
+    })
+})
 
 
 app.listen(port, () => console.log(`REST API listening on port ${port}`))

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Table from "./Table.js"
 import ResetButton from "./ResetButton.js";
-import KH from "../../res/gifs/KH.gif"
 import CovidStore from "../../stores/CovidStore.js";
 import Actions from "../../actions"
 
@@ -25,21 +24,34 @@ export default class TableContainer extends Component {
         this.setState({ covids })
     }
 
+    handleDelete = event => {
+        const { id } = event.target
+        Actions.deleteCovid(id)
+    }
+
+    handleReset = () => {
+        Actions.resetCovidTable("")
+        //add additional tables (reference tables, many-to-one, one-to-many)
+    }
+
     render() {
-        console.log(this.state)
+        const data = this.state.covids.map(covid => {
+            covid.Actions = <i className="fa fa-trash-alt delete-button" id={covid.covid_id} onClick={this.handleDelete} title="Delete" />
+
+            return covid
+        })
 
         return (
             <div>
                 <div className="centered-row" style={{ paddingTop: 10, paddingBottom: 10 }}>
                     <p className="table-title">Covid Information</p>
-                    <ResetButton onClick={() => console.log("reset button clicked!")} />
+                    <ResetButton onClick={this.handleReset} />
                 </div>
 
                 <div className="centered-row">
-                    <img src={KH} alt="kingdom-hearts" />
                 </div>
 
-                <Table data={this.state.covids} />    
+                <Table data={data} />    
             </div>
 
             
