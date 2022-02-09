@@ -20,6 +20,10 @@ class Actions {
         return payload
     }
 
+    getPeopleVaxxed(payload) {
+        return payload
+    }
+
 }
 
 export default alt.createActions(Actions)

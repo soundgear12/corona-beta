@@ -3,11 +3,11 @@ const fs =  require('fs')
 
 const covidFilePath = './csv/covid.csv'
 const covidConfirmedFilePath = './csv/covidConfirmed.csv'
-//const covidConfirmedFilePath = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv'
-//const covidWorldFilePath = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv'
-//const covidWorldFile = fs.readFileSync(covidWorldFilePath, "utf8")
+const peopleVaxxedFilePath = './csv/people_vaccinated_us_timeline.csv'
 const covidFile = fs.readFileSync(covidFilePath, "utf8")
 const covidConfirmedFile = fs.readFileSync(covidConfirmedFilePath, "utf8")
+const peopleVaxxedFile = fs.readFileSync(peopleVaxxedFilePath, "utf8")
+
 
 const covidRows = {}
 Papa.parse(covidFile, {
@@ -54,6 +54,27 @@ const covidConfirmedLocationArray = covidConfirmedRows.data.map(row => {
 const covidConfirmedData = Papa.unparse(covidConfirmedLocationArray)
 createFile("./csv/covidConfirmedTable.csv", covidConfirmedData, "Covid location table successfully saved!")
 
+
+//Vaccinated people in US
+const peopleVaxxedRows = {}
+Papa.parse(peopleVaxxedFile, {
+    header: true,
+    skipEmptyLines: true,
+    complete: function(results) {
+        peopleVaxxedRows.data = results.data
+        peopleVaxxedRows.errors = results.errors
+        peopleVaxxedRows.meta = results.meta
+    }
+})
+
+const peopleVaxxedArray = peopleVaxxedRows.data.map(row => {
+    const { FIPS, Province_State, Country_Region, Date, People_Fully_Vaccinated,People_Partially_Vaccinated } = row
+
+    return { FIPS, Province_State, Country_Region, Date, People_Fully_Vaccinated,People_Partially_Vaccinated }
+})
+
+const peopleVaxxedData = Papa.unparse(peopleVaxxedArray)
+createFile('./csv/peopleVaxxedTable.csv', peopleVaxxedData, "People vaxxed table successfully saved!")
 
 function createFile(filePath, data, msg) {
     fs.writeFile(filePath, data, err => {

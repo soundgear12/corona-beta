@@ -1,4 +1,5 @@
-const mysql = require('mysql')
+const mysql = require('mysql');
+const Query = require('mysql/lib/protocol/sequences/Query');
 
 const db = mysql.createConnection({
     host: "localhost",
@@ -35,6 +36,17 @@ db.connect(err => {
     query = "LOAD DATA LOCAL INFILE 'csv/covidConfirmedTable.csv' INTO TABLE DAILY_COVID FIELDS TERMINATED BY ',' IGNORE 1 LINES"
     + "(uid, city, province_state, cases)"
     executeQuery(query, "Daily Covid table loaded!")
+
+    //People vaccinated in US
+    query = "DROP TABLE IF EXISTS PEOPLE_VAXXED"
+    executeQuery(query, "People vaxxed table dropped!")
+
+    query = "CREATE TABLE PEOPLE_VAXXED (FIPS INT, Province_State VARCHAR(255), Country_Region VARCHAR(255), Date date, People_Fully_Vaccinated INT, People_Partially_Vaccinated INT)"
+    executeQuery(query, "People vaxxed table created!")
+
+    query = "LOAD DATA LOCAL INFILE 'csv/peopleVaxxedTable.csv' INTO TABLE PEOPLE_VAXXED FIELDS TERMINATED BY ',' IGNORE 1 LINES"
+    + "(FIPS, Province_State, Country_Region, Date, People_Fully_Vaccinated,People_Partially_Vaccinated)"
+    executeQuery(query, "People vaxxed table loaded!")
 
     db.end(err => {
         if (err) throw err;

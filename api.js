@@ -16,14 +16,6 @@ const db = mysql.createConnection({
 
 app.use(cors())
 
-/* app.get('/getallCovid', (req, res) => {
-    const query = "SELECT * FROM COVID"
-    db.query(query, (err, rows) => {
-        if (err) throw err;
-        res.send(rows)
-    })
-}) */
-
 app.get('/getallCovid', (req, res) => {
     const query = "SELECT * FROM COVID"
     db.query(query, (err, rows) => {
@@ -49,5 +41,15 @@ app.get('/getallDailyCovid', (req, res) => {
     })
 })
 
+//People Vaxxed in US
+app.get('/getallVaxxed', (req, res) => {
+    const query = "SELECT * FROM PEOPLE_VAXXED"
+    db.query(query, (err, rows) => {
+        if (err) throw err;
+        res.send(rows)
+    })
+})
+
+//People vaccinated in US
 
 app.listen(port, () => console.log(`REST API listening on port ${port}`))
