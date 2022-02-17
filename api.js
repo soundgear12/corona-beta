@@ -50,6 +50,14 @@ app.get('/getallVaxxed', (req, res) => {
     })
 })
 
+app.get('/getbothVaxxTotal', (req, res) => {
+    const query = "select date, format(sum(People_Fully_Vaccinated),0) as full_vaxx, format(sum(People_Partially_Vaccinated),0) as part_vaxx from people_vaxxed where date LIKE '2022-02-08';"
+    db.query(query, (err, rows) => {
+        if (err) throw err;
+        res.send(rows)
+    })
+})
+
 //People vaccinated in US
 
 app.listen(port, () => console.log(`REST API listening on port ${port}`))

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { faHome, faPlus, faUsers, faList, faGlobe } from "@fortawesome/free-solid-svg-icons"
+import { faHome, faUsers, faFlagUsa, faSyringe, faPuzzlePiece } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const MenuBar = () => {
@@ -15,25 +15,25 @@ const MenuBar = () => {
 
                 <li>
                     <Link to="/world">
-                        <FontAwesomeIcon icon={faGlobe} />
+                        <FontAwesomeIcon icon={faFlagUsa} />
                     </Link>
                 </li>
 
                 <li>
-                    <Link to="/list">
-                        <FontAwesomeIcon icon={faList} />
+                    <Link to="/query">
+                        <FontAwesomeIcon icon={faPuzzlePiece} />
                     </Link>
                 </li>
 
-                <li>
-                    <Link to="/users">
+                { <li>
+                    <Link to="/layout">
                         <FontAwesomeIcon icon={faUsers} />
                     </Link>
-                </li>
+                </li> }
 
                 <li>
-                    <Link to="/add">
-                        <FontAwesomeIcon icon={faPlus} />
+                    <Link to="/vaxxed">
+                        <FontAwesomeIcon icon={faSyringe} />
                     </Link>
                 </li>
 

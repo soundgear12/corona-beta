@@ -81,3 +81,18 @@ a {
     background-color: var(--primary-dark-green);
     color: white;
 }
+
+.cell-container {
+    margin: 60px;
+    background-color: white;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 200px 200px 200px 200px;
+    grid-template-columns: 2fr 1fr;
+}
+
+.main-cell {
+    background-color: var(--primary-dark-blue);
+    text-align: left;
+    box-sizing: content-box;
+}

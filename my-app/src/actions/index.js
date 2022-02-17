@@ -24,6 +24,14 @@ class Actions {
         return payload
     }
 
+    getTotalVaxxed(payload) {
+        return payload
+    }
+
+    getBothVaxxedTotal(payload) {
+        return payload
+    }
+
 }
 
 export default alt.createActions(Actions)
