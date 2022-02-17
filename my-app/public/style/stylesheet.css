@@ -85,14 +85,41 @@ a {
 .cell-container {
     margin: 60px;
     background-color: white;
-    padding: 10px;
+    padding: 25px;
     display: grid;
-    grid-template-columns: 200px 200px 200px 200px;
-    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+    column-count: 3;
+    grid-template-columns: 200px 200px 200px;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .main-cell {
+    padding: 25px;
+    border-radius: 25px;
     background-color: var(--primary-dark-blue);
-    text-align: left;
-    box-sizing: content-box;
+    text-align:left;
+    grid-column: 1 / span 3;
+
+}
+
+.cell-title {
+    font-size: 20px;
+}
+
+.attribute-cell {
+    padding: 25px;
+    border-radius: 25px;
+    background-color:rgb(223, 223, 223);
+    text-align:left;
+}
+
+.coordinates {
+    font-size: 32px;
+}
+
+.date {
+    padding: 25px;
+    border-radius: 25px;
+    background-color:rgb(223, 223, 223);
+    text-align:left;
 }

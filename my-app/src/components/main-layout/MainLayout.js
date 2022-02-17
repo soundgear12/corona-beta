@@ -11,7 +11,7 @@ export default class MainLayout extends Component {
 
     componentDidMount() {
         PeopleVaxxedStore.listen(this.onChange)
-        Actions.getTotalVaxxed("")
+        Actions.getBothVaxxedTotal("")
     }
 
     componentWillUnmount() {
@@ -43,12 +43,41 @@ export default class MainLayout extends Component {
         return (
             <div className="centered-row" style={{ paddingTop: 10, paddingBottom: 10 }}>
                 <p className="table-title">Layout Template</p>
+
                 <div className="cell-container">
+
                     <div className="main-cell">
-                        <h3>99</h3>
+                        <p className="cell-title">State Name</p>
+                        <h1 className="main-cell-number">99</h1>
+                        <p>View Sources</p>
+
                     </div>
+
+
+                    <div className="attribute-cell">
+                        <p className="cell-title">Select Province/State</p>
+                    </div>
+
+                    <div className="attribute-cell">
+                        <p className="cell-title">Location</p>
+                        <p className="coordinates">13°31′N 144°50′E </p>
+                    </div>
+
+                    <div className="attribute-cell">
+                        <p className="cell-title">Vaccination Status</p>
+                    </div>
+
+                    <div className="date">
+                        <p className="cell-title">Date</p>
+                        <p>
+                        </p>
+                    </div>
+
+
                 </div>
-            </div>    
+
+
+            </div>
         );
     }
 }
